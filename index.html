@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Crown Chess Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            background-color: #F5F2EB;
+            color: #333333;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .loader {
+            border: 4px solid #D4CFC7;
+            border-top: 4px solid #5B8266;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <script>
+        window.onload = function() {
+            // Put your exact Google Play Closed Testing link right here
+            var playStoreLink = "YOUR_CLOSED_TESTING_LINK_HERE";
+            
+            setTimeout(function() {
+                window.location.href = playStoreLink;
+            }, 1500); 
+        };
+    </script>
+</head>
+<body>
+    <div class="loader"></div>
+    <h2>Opening Crown Chess...</h2>
+    <p>If you don't have the app installed, you will be redirected to the testing page.</p>
+</body>
+</html>
