@@ -42,8 +42,7 @@
 
             // 4. The Magic Android Intent URL
             // This aggressively tells the phone's browser to open the app!
-            const intentUrl = "intent://susankar-2003.github.io/join-chess/?code=" + gameCode + "#Intent;scheme=https;package=" + packageName + ";end";
-
+            const intentUrl = "intent://join?code=" + gameCode + "#Intent;scheme=crownchess;package=" + packageName + ";end";
             // First, try to instantly open the app
             window.location.href = intentUrl;
 
