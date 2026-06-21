@@ -29,18 +29,35 @@
     </style>
     <script>
         window.onload = function() {
-            // Put your exact Google Play Closed Testing link right here
-            var playStoreLink = "https://play.google.com/store/apps/details?id=com.crown.chess";
-            
+            // 1. Grab the code from the URL (e.g., ?code=1234)
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameCode = urlParams.get('code') || '';
+
+            // 2. Your App's Exact Package Name
+            const packageName = "com.crown.chess"; 
+
+            // 3. The testing link for Google Play
+            // (Use the web testing link Google provides, usually formatted like this)
+            const playStoreLink = "https://play.google.com/apps/testing/" + packageName;
+
+            // 4. The Magic Android Intent URL
+            // This aggressively tells the phone's browser to open the app!
+            const intentUrl = "intent://susankar-2003.github.io/join-chess/?code=" + gameCode + "#Intent;scheme=https;package=" + packageName + ";end";
+
+            // First, try to instantly open the app
+            window.location.href = intentUrl;
+
+            // If the app is NOT installed, the intent will fail. 
+            // We wait 2 seconds, then redirect them to the Play Store.
             setTimeout(function() {
                 window.location.href = playStoreLink;
-            }, 1500); 
+            }, 2000); 
         };
     </script>
 </head>
 <body>
     <div class="loader"></div>
     <h2>Opening Crown Chess...</h2>
-    <p>If you don't have the app installed, you will be redirected to the testing page.</p>
+    <p>If the app does not open automatically, you will be redirected to the Play Store.</p>
 </body>
 </html>
