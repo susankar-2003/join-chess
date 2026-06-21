@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Join Crown Chess Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -25,7 +26,10 @@
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
     </style>
     <script>
         window.onload = function() {
@@ -37,26 +41,21 @@
             const packageName = "com.crown.chess"; 
 
             // 3. The testing link for Google Play
-            // (Use the web testing link Google provides, usually formatted like this)
             const playStoreLink = "https://play.google.com/apps/testing/" + packageName;
 
-            // 4. The Magic Android Intent URL
-            // This aggressively tells the phone's browser to open the app!
-            const intentUrl = "intent://join?code=" + gameCode + "#Intent;scheme=crownchess;package=" + packageName + ";end";
-            // First, try to instantly open the app
-            window.location.href = intentUrl;
+            // 4. The Magic Android Intent URL with automatic Play Store fallback
+            const intentUrl = "intent://join?code=" + gameCode + 
+                              "#Intent;scheme=crownchess;package=" + packageName + 
+                              ";S.browser_fallback_url=" + encodeURIComponent(playStoreLink) + ";end";
 
-            // If the app is NOT installed, the intent will fail. 
-            // We wait 2 seconds, then redirect them to the Play Store.
-            setTimeout(function() {
-                window.location.href = playStoreLink;
-            }, 2000); 
+            // 5. Instantly attempt to open the app or fallback to the Play Store
+            window.location.href = intentUrl;
         };
     </script>
 </head>
 <body>
     <div class="loader"></div>
     <h2>Opening Crown Chess...</h2>
-    <p>If the app does not open automatically, you will be redirected to the Play Store.</p>
+    <p>If you don't have the app installed, you will be redirected to the Play Store.</p>
 </body>
 </html>
